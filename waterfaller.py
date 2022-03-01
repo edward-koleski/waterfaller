@@ -46,12 +46,6 @@ def raw2df(input_file):
     
     for i in sname_df.index:
 
-        s = sname_df.loc[i,'sname']                             # get the important part of the sample name
-        short_sname = re.search('V (.*).d', s)
-        short_sname = short_sname[1]
-        short_sname = short_sname[short_sname.find(')')+2:]
-        sname_df.loc[i,'short_sname'] = short_sname
-
         if i == 0:                                             # Get the start and end idx for each sample
             sname_df.loc[i,'start_idx'] = 0                    # Special case for first sample
             
@@ -79,13 +73,13 @@ def raw2df(input_file):
             df = df.merge(df2merge, how='outer', on=['#Point'], suffixes=('','_added'))
             df = df.drop(columns=['X(Minutes)_added'])
             
-        df = df.rename(columns={'Y(Counts)':sname_df.loc[i,'short_sname']})
+        df = df.rename(columns={'Y(Counts)':sname_df.loc[i,'sname']})
         
     df = df.astype(float)                                     # Convert data type to float
     df = df.drop(columns = ['#Point'])
     df = df.rename(columns={'X(Minutes)':'time'})
     
-    s_names = sname_df['short_sname'].to_list()
+    s_names = sname_df['sname'].to_list()
     
     exp_df = df.copy()                                        # Create copy, change column names, export to csv
     exp_df = exp_df[exp_df.columns[1:]]
@@ -167,21 +161,24 @@ def waterfall(data, s_names, y_scales, fname_out):
     
     print("\nSample names found in .csv file:")                  # Print out sample names in csv
     for i in range(len(s_names)):
-        print(f"{i+1}: {s_names[i]}") 
-    
+        if i+1 in custom_s_names.keys():
+            print(f"{i+1}: {s_names[i]} // {custom_s_names[i+1]}")
+        else:
+            print(f"{i+1}: {s_names[i]}")
+
     if len(custom_s_names.keys()) != 0:                    # Customize s_names
         for i in custom_s_names.keys():
             if i-1 in range(len(s_names)):
                 s_names[i-1] = custom_s_names[i]               # custom_s_names dict 1 indexed.
             else:
                 print(f"\nError while renaming. Chromatogram number {i} is not in chromatogram index.")
-    
+        
     for i in range(len(axs)):                       # Add Labels for each line
         ax = axs[i]
         xlim, ylim = ax.get_xlim(), ax.get_ylim()
         x_range = xlim[1] - xlim[0]
         y_range = ylim[1] - ylim[0]
-        ax.text(xlim[1], ylim[0]+y_range*0.75, s_names[i], ha='right')
+        ax.text(xlim[1], ylim[0]+y_range*0.85, s_names[i], ha='right')
         
     if len(x_label)!= 0:
         plt.xlabel(x_label, fontsize = x_label_size, fontweight='bold')
@@ -213,11 +210,25 @@ def single_chrom(data, s_names, fname_out):
     plt.xlim(x_min,x_max)     # Set x axis limits
     plt.xticks(np.arange(x_min, x_max+x_tick, x_tick), fontsize=x_tick_size)   # set xticks
     
+    print("\nSample names found in .csv file:")                  # Print out sample names in csv
+    for i in range(len(s_names)):
+        if i+1 in custom_s_names.keys():
+            print(f"{i+1}: {s_names[i]} // {custom_s_names[i+1]}")
+        else:
+            print(f"{i+1}: {s_names[i]}")
+
+    if len(custom_s_names.keys()) != 0:                    # Customize s_names
+        for i in custom_s_names.keys():
+            if i-1 in range(len(s_names)):
+                s_names[i-1] = custom_s_names[i]               # custom_s_names dict 1 indexed.
+            else:
+                print(f"\nError while renaming. Chromatogram number {i} is not in chromatogram index.")
+    
     xlim, ylim = ax.get_xlim(), ax.get_ylim()
     x_range = xlim[1] - xlim[0]
     y_range = ylim[1] - ylim[0]
     ax.text(xlim[1], ylim[0]+y_range*0.85, s_names[0], ha='right')
-
+    
     if len(x_label)!= 0:
         plt.xlabel(x_label, fontsize = x_label_size, fontweight='bold')
         

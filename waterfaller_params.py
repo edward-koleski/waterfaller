@@ -2,13 +2,13 @@
 ############################################################
 
 #Input file
-fname_in = '/Users/edkoleski/Documents/Chang_Lab/scripts/waterfaller/stable/220224_PazamineSIM.csv' 
+fname_in = '/Users/edkoleski/Documents/Chang_Lab/scripts/waterfaller/stable/test cases/one_chrom.csv' 
 # Should be the .csv export from mass hunter - no modifications necessary.
 
 #Output files
 # A table of the paresed will be saved as a .csv file named the same as the in .csv file with ' parsed' added in same directory
 
-fname_out = '/Users/edkoleski/Documents/Chang_Lab/scripts/waterfaller/stable/220224_PazamineSIM.pdf' 
+fname_out = '/Users/edkoleski/Documents/Chang_Lab/scripts/waterfaller/stable/test cases/out.pdf' 
 # Output figure location, should be .pdf to import into illustrater if needed. Changing the extension to .svg may simplify editing in illustrator.
 
 
@@ -21,7 +21,7 @@ y_reorder = [] # Note: Comma required between numbers!
 # Note: Comma required between numbers!
 
 # Title
-title_text = '220223 Vf-ATA replicate sunnie' # Optional - Leave empty if no title desired ('').
+title_text = '' # Optional - Leave empty if no title desired ('').
 title_size = 20 # Font size of title text
 
 # Scale and rename
@@ -29,10 +29,10 @@ y_scales = {} # Scale a chromatogram. Larger = zoom in. 1 is the top chromatogra
 custom_s_names = {} # Rename a chromatogram. 1 is the top chromatogram. ex. {2:'favorite', 5:'least favorite'}
 
 # X-Axis
-t_min = 2.5 # Min time in units data is stored in (seconds, minutes, hours)
-t_max = 24 # Max time in units data is stored in (seconds, minutes, hours)
-x_min = 15 # Minimum on x-axis
-x_max = 20 # Maximum on x-axis
+t_min = 0 # Min time in units data is stored in (seconds, minutes, hours)
+t_max = 10 # Max time in units data is stored in (seconds, minutes, hours)
+x_min = 0 # Minimum on x-axis
+x_max = 10 # Maximum on x-axis
 x_tick = 1 # Incremenet for x-tick marks
 x_tick_size = 16 # Font size for x-tick marks
 x_label = 'Time (min)' # X-axis title. Leave blank ( = '') if no title desired.
