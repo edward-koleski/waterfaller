@@ -58,4 +58,4 @@ Changes:
 Let me know if you run into issues or have suggestions for improvements!
 
 Ed
-edward_koleski@berkeley.edu
+edward_koleski at berkeley.edu
