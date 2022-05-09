@@ -1,9 +1,7 @@
-##### Waterfaller 2.2 #####
-
 ########################################################
 #Last updated: 2/16/21
-#Created by: Dr. Jorge Marchand
-#Updated by: Ed Koleski
+#Created by: Ed Koleski
+#Heavy inspiration from: Dr. Jorge Marchand
 #Works with Python 3.8.8
 ########################################################
 
@@ -12,7 +10,7 @@ The purpose of this script is to read in LC-MS data in the output format generat
 Instructions:
 1. Open the file "waterfaller_params.py" and adjust the parameters to your preference. 
         - Descriptions are included next to each parameter
-2. Open your command line (or terminal)
+2. Open your command line (or terminal on MacOS)
 
 Option A:
 3A. Enter the following command: python3 (full directory to script)/waterfaller.py
@@ -53,7 +51,7 @@ matplotlib
 Changes:
 ########################################################
 - Can now create a plot for a single chromatogram
-- Adjusted the height of each chromatogram label
+- Handle UV data
 
 Let me know if you run into issues or have suggestions for improvements!
 
