@@ -1,9 +1,7 @@
-##### Waterfaller 2.2 #####
-
 ########################################################
 #Last updated: 2/16/21
-#Created by: Dr. Jorge Marchand
-#Updated by: Ed Koleski
+#Created by: Ed Koleski
+#Heavy inspiration from: Dr. Jorge Marchand
 #Works with Python 3.8.8
 ########################################################
 
